@@ -1,0 +1,8 @@
+{
+  "conventionalCommits.scopes": [
+    "Adevertiser",
+    "Campaign",
+    "File",
+    "Admin"
+  ]
+}
