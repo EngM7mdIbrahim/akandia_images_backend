@@ -15,11 +15,13 @@ const app = express();
 app.set("trust proxy", 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 // @ts-ignore
 app.use(cors());
 
 //Routes
 app.use(ImagesRouter);
+app.use("/downloads", express.static("downloads"));
 // fileBinder(app);
 // campaignBinder(app);
 
@@ -28,7 +30,7 @@ app.use(errorHandler);
 
 function performCheckUps(
   ENV_VARS = ["PORT", 
-  // ["MONGO_DB_CONN_STRING", "AMAZON_DB_CONN_STRING"]
+  ["MONGO_DB_CONN_STRING", "AMAZON_DB_CONN_STRING"]
 ]
 ) {
   ENV_VARS.forEach((VAR) => {

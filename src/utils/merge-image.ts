@@ -1,13 +1,17 @@
 import Jimp from "jimp";
-import { FrameMeta } from "../types/FrameMeta";
+import path from "path";
+import { IFrameMeta } from "../types/FrameMeta";
+import deleteFile from "./delete-file";
 
 export async function mergeImages(
-  frame: FrameMeta,
-  imagePath: string
-): Promise<void> {
-  try {
-    const frameImg = await Jimp.read(frame.PATH);
+  frame: IFrameMeta,
+  imageName: string
+): Promise<{link: string, width: number, height: number}> {
+    const imagePath = path.join("temp", imageName)
+    const frameImg = await Jimp.read(path.join("frames", "frame.png"));
     const uploadImg = await Jimp.read(imagePath);
+    const originalWidth = uploadImg.getWidth();
+    const originalHeight = uploadImg.getHeight();
     // Resize the uploaded image to fit the frame
     uploadImg.cover(frame.IMAGE_WIDTH, frame.IMAGE_HEIGHT);
     // Composite the two images
@@ -17,9 +21,11 @@ export async function mergeImages(
       frame.IMAGE_TOP_LEFT.Y
     );
 
+
     // Save the merged image
-    await frameImg.writeAsync("src/uploads/output.png");
-  } catch (err) {
-    console.error(err);
-  }
+    await frameImg.writeAsync(path.join("downloads", imageName));
+    await deleteFile(imagePath);
+    const link = `http://localhost:${process.env.PORT}/downloads/${imageName}`
+    return {link, width: originalWidth, height: originalHeight }
+  
 }
