@@ -34,6 +34,10 @@ const imagesSchema = new Schema<
       type: String,
       required: true,
     },
+    previewLink:{
+      type: String,
+      required: true,
+    },
     timeTaken:{
       type: Number,
       required: true,

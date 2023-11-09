@@ -4,6 +4,7 @@
     "Campaign",
     "File",
     "Admin",
-    "Images"
+    "Images",
+    "server"
   ]
 }

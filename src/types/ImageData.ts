@@ -4,4 +4,5 @@ export interface IImageData {
     height: number;
     link: string;
     timeTaken: number;
+    previewLink: string;
 }

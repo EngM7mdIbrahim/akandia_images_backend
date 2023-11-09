@@ -22,6 +22,7 @@ app.use(cors());
 //Routes
 app.use(ImagesRouter);
 app.use("/downloads", express.static("downloads"));
+app.use("/preview", express.static("preview"));
 // fileBinder(app);
 // campaignBinder(app);
 

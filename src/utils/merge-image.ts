@@ -6,8 +6,8 @@ import deleteFile from "./delete-file";
 export async function mergeImages(
   frame: IFrameMeta,
   imageName: string
-): Promise<{link: string, width: number, height: number}> {
-    const imagePath = path.join("temp", imageName)
+): Promise<{link: string, previewLink: string, width: number, height: number}> {
+    const imagePath = path.join("preview", imageName)
     const frameImg = await Jimp.read(path.join("frames", "frame.png"));
     const uploadImg = await Jimp.read(imagePath);
     const originalWidth = uploadImg.getWidth();
@@ -21,11 +21,10 @@ export async function mergeImages(
       frame.IMAGE_TOP_LEFT.Y
     );
 
-
     // Save the merged image
     await frameImg.writeAsync(path.join("downloads", imageName));
-    await deleteFile(imagePath);
     const link = `http://localhost:${process.env.PORT}/downloads/${imageName}`
-    return {link, width: originalWidth, height: originalHeight }
+    const previewLink = `http://localhost:${process.env.PORT}/preview/${imageName}`
+    return {link, previewLink, width: originalWidth, height: originalHeight }
   
 }

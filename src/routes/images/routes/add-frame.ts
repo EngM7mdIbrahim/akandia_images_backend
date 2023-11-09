@@ -17,15 +17,14 @@ router.post("/add-frame", (req: Request, res: Response) => {
   bb.on("file", async (_, file, info) => {
     monitor.start();
     fileName = info.filename
-    await writeFile(file, path.join("temp", info.filename));
+    await writeFile(file, path.join("preview", info.filename));
   });
   bb.on("finish", async () => {
-    const {link, width, height} = await mergeImages(FRAMES[0], fileName);
+    const {link, previewLink, width, height} = await mergeImages(FRAMES[0], fileName);
     monitor.end();
     res
       .status(201)
       .send({
-        message: "Finished uploading all files!",
         link,
         timeTaken: monitor.getDuration(),
       });
@@ -34,6 +33,7 @@ router.post("/add-frame", (req: Request, res: Response) => {
       width,
       height,
       link,
+      previewLink,
       timeTaken: monitor.getDuration(),
     })
   });
