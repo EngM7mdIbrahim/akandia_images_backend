@@ -38,6 +38,10 @@ const imagesSchema = new Schema<
       type: String,
       required: true,
     },
+    fileSize:{
+      type: Number,
+      required: true,
+    },
     timeTaken:{
       type: Number,
       required: true,

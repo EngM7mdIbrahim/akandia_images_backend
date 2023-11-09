@@ -14,10 +14,11 @@ router.post("/add-frame", (req: Request, res: Response) => {
   const bb = Busboy({ headers: req.headers });
   const monitor = new Monitor();
   let fileName = "";
+  let fileSize = 0;
   bb.on("file", async (_, file, info) => {
     monitor.start();
     fileName = info.filename
-    await writeFile(file, path.join("preview", info.filename));
+    fileSize = await writeFile(file, path.join("preview", info.filename));
   });
   bb.on("finish", async () => {
     const {link, previewLink, width, height} = await mergeImages(FRAMES[0], fileName);
@@ -34,6 +35,7 @@ router.post("/add-frame", (req: Request, res: Response) => {
       height,
       link,
       previewLink,
+      fileSize,
       timeTaken: monitor.getDuration(),
     })
   });
