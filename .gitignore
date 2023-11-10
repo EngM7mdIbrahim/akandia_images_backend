@@ -2,3 +2,5 @@
 .env
 .env
 build/*
+downloads/*
+preview/*
