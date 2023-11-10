@@ -6,8 +6,6 @@ export default async function writeFile(file: any, pathToSave: string ): Promise
         try{
             file.pipe(m).pipe(fs.createWriteStream(pathToSave));
             file.on("end", () => {
-                console.log("File upload completed!");
-                console.log("file: ", file)
                 resolve(m.bytes)
             });
         }catch(err){

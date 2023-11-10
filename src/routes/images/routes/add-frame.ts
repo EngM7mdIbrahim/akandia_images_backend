@@ -23,12 +23,6 @@ router.post("/add-frame", (req: Request, res: Response) => {
   bb.on("finish", async () => {
     const {link, previewLink, width, height} = await mergeImages(FRAMES[0], fileName);
     monitor.end();
-    res
-      .status(201)
-      .send({
-        link,
-        timeTaken: monitor.getDuration(),
-      });
     await newImagesData({
       name: fileName,
       width,
@@ -38,6 +32,12 @@ router.post("/add-frame", (req: Request, res: Response) => {
       fileSize,
       timeTaken: monitor.getDuration(),
     })
+    res
+      .status(201)
+      .send({
+        link,
+        timeTaken: monitor.getDuration(),
+      });
   });
   req.pipe(bb);
 });
