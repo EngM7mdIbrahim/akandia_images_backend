@@ -66,3 +66,4 @@ app.listen(process.env.PORT || 8000, async () => {
     console.log("Cannot connect to the database!");
   }
 });
+export default app;
