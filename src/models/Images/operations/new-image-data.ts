@@ -12,6 +12,6 @@ export default async function newImagesData(
     return imageDoc;
   } catch (e: any) {
     console.error(e.message);
-    throw new ServerError("Something went wrong while saving your deliverable!");
+    throw new ServerError("Something went wrong while saving your image!");
   }
 }

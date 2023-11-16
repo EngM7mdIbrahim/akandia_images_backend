@@ -1,4 +1,3 @@
-import { Schema } from "mongoose";
 import { BaseError } from "./base-error";
 
 export class BadRequestError extends BaseError {

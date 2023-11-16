@@ -1,18 +1,13 @@
 import { Document, Model, Schema, model } from "mongoose";
 import { IImageData } from "../../types/ImageData";
 
-
-
-//TODO: 'Change attributes of the campaign here!'
 export interface IImageDataDoc extends Document, IImageData {
 
 }
 
 interface IImageDataModel extends Model<IImageDataDoc> {
-  build(deliverable: IImageData): IImageDataDoc;
+  build(image: IImageData): IImageDataDoc;
 }
-
-//TODO: 'Change attributes of the campaign here!'
 const imagesSchema = new Schema<
   IImageDataDoc,
   IImageDataModel
@@ -56,8 +51,8 @@ const imagesSchema = new Schema<
   }
 );
 
-imagesSchema.statics.build = (deliverable: IImageData) => {
-  return new ImagesData(deliverable);
+imagesSchema.statics.build = (image: IImageData) => {
+  return new ImagesData(image);
 };
 
 const ImagesData = model("Image", imagesSchema);

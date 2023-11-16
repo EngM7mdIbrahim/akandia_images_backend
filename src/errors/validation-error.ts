@@ -4,7 +4,7 @@ import { ValidationError } from "express-validator";
 export class RequestValidationError extends BaseError {
   statusCode = 400;
   constructor(private errors: ValidationError[]) {
-    super("Recieved invalid request body!");
+    super("Received invalid request body!");
     Object.setPrototypeOf(this, RequestValidationError.prototype);
   }
   serializeError(): { message: string; field?: string | undefined }[] {

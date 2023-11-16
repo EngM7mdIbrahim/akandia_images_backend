@@ -1,7 +1,6 @@
 import Jimp from "jimp";
 import path from "path";
 import { IFrameMeta } from "../types/FrameMeta";
-import deleteFile from "./delete-file";
 
 export async function mergeImages(
   frame: IFrameMeta,

@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { BaseError } from "./base-error";
 
 export class NotAuthenticatedError extends BaseError {

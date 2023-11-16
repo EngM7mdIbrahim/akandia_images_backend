@@ -1,5 +1,3 @@
-import mongoose from "mongoose";
-
 export abstract class BaseError extends Error {
   abstract statusCode: number;
   abstract serializeError(): { message: string; field?: string }[];
